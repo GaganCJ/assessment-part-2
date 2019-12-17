@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Assessment Management | Choose Assessment</title>
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+<link href="/css/custom.css" rel="stylesheet"/>
+<script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+</head>
+<body>
+	<div class="container">
+		<nav
+			class="navbar navbar-expand-lg navbar-light bg-white justify-content-end">
+			<ul class="navbar-nav">
+				<li class="row">
+					<div class="col-sm-2">
+						<span id="thid" style="display:none;" th:text="${userId}"></span>
+					</div>
+					<div class="col-sm-2">
+						<a href="/logout">Logout</a>
+					</div>
+				</li>
+			</ul>
+		</nav>
+		<div id="accordion">
+			<div class="row mt-3">
+				<div class="col-6">
+					<div class="card">
+						<div class="card-header text-center" id="headingOne">
+							<h5>
+								<a id="techA" data-toggle="collapse" href="#collapseExample1"
+									role="button" aria-expanded="false"
+									aria-controls="collapseExample1">Register for Technical
+									Assessment</a>
+							</h5>
+						</div>
+						<div class="collapse" id="collapseExample1"
+							aria-labelledby="headingOne" data-parent="#accordion">
+							<div class="card-body">
+								<div class="card">
+									<div class="card-header">
+										<div class="card-title">
+											<h5>Technical Assessment Registration</h5>
+										</div>
+									</div>
+									<div class="card-body">
+										<form id="signupform" class="form-horizontal" role="form"
+											action="/register/technical" method="post">
+											<div id="signupalert" style="display: none"
+												class="alert alert-danger">
+												<p>Error:</p>
+												<span></span>
+											</div>
+											<div class="form-group">
+												<label for="usedid" class="col-md-3 control-label">User
+													ID</label>
+												<div class="col-md-9">
+													<input type="text" class="form-control userId" name="userid" disabled>
+												</div>
+											</div>
+											<div class="form-group">
+												<label for="assessment" class="col-md-3 control-label">Last
+													Name</label>
+												<div class="col-md-9">
+													<select class="form-control" name="assessment">
+														<option selected disabled>Select an assessment</option>
+														<option>Java</option>
+														<option>C++</option>
+														<option>C#</option>
+														<option>Python</option>
+														<option>Perl</option>
+														<option>PHP</option>
+													</select>
+												</div>
+											</div>
+											<div class="form-group">
+												<label for="dateof" class="col-md-3 control-label">Date</label>
+												<div class="col-md-9">
+													<input type="date" class="form-control" name="dateof"
+														placeholder="Select a Date">
+												</div>
+											</div>
+											<div class="form-group">
+												<!-- Button -->
+												<div class="col-md-offset-3 col-md-9">
+													<button id="btn-signup" type="submit" class="btn btn-info">
+														<i class="icon-hand-right"></i>Register
+													</button>
+												</div>
+											</div>
+										</form>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="col-6">
+					<div class="card">
+						<div class="card-header text-center" id="headingTwo">
+							<h5>
+								<a class="collapsed" id="behA" data-toggle="collapse"
+									href="#collapseExample2" role="button" aria-expanded="false"
+									aria-controls="collapseExample2">Register for Behavioral
+									Assessment</a>
+							</h5>
+						</div>
+						<div class="collapse" id="collapseExample2"
+							aria-labelledby="headingTwo" data-parent="#accordion">
+							<div class="card-body">
+								<div class="card">
+									<div class="card-header">
+										<div class="card-title">
+											<h5>Behavioral Assessment Registration</h5>
+										</div>
+									</div>
+									<div class="card-body">
+										<form id="signupform" class="form-horizontal" role="form"
+											action="/register/behavioral" method="post">
+											<div id="signupalert" style="display: none"
+												class="alert alert-danger">
+												<p>Error:</p>
+												<span></span>
+											</div>
+											<div class="form-group">
+												<label for="usedid" class="col-md-3 control-label">User
+													ID</label>
+												<div class="col-md-9">
+													<input type="text" class="form-control userId" name="userid" disabled>
+												</div>
+											</div>
+											<div class="form-group">
+												<label for="assessment" class="col-md-3 control-label">Last
+													Name</label>
+												<div class="col-md-9">
+													<select class="form-control" name="assessment">
+														<option selected disabled>Select an assessment</option>
+														<option>Step Plus</option>
+														<option>Email Etiquette</option>
+														<option>Learning Agility</option>
+													</select>
+												</div>
+											</div>
+											<div class="form-group">
+												<label for="dateof" class="col-md-3 control-label">Date</label>
+												<div class="col-md-9">
+													<input type="date" class="form-control" name="dateof"
+														placeholder="Select a Date">
+												</div>
+											</div>
+											<div class="form-group">
+												<!-- Button -->
+												<div class="col-md-offset-3 col-md-9">
+													<button id="btn-signup" type="submit" class="btn btn-info">
+														<i class="icon-hand-right"></i>Register
+													</button>
+												</div>
+											</div>
+										</form>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</body>
+<script type="text/javascript">
+	$(document).ready(function() {
+		$.ajax({
+			url: "http://localhost:7070/user"
+		}).then(function(data){
+			var obj = JSON.parse(data);
+			$('.userId').val(obj.userId);
+			$('.userId').placeholder(obj.userId);
+		})
+	});
+</script>
+</html>
