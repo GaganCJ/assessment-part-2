@@ -177,7 +177,22 @@
 			var obj = JSON.parse(data);
 			$('.userId').val(obj.userId);
 			$('.userId').placeholder(obj.userId);
-		})
+		});
+		var form_data = {}
+		$.ajax({
+			type: "POST",
+			contentType: "application/json",
+			url: "/",
+			data: JSON.stringify(form_data),
+			dataType: 'json',
+			timeout: 600000,
+			success: function(d){
+				
+			},
+			error: function(e){
+				
+			}
+		});
 	});
 </script>
 </html>
