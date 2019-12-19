@@ -3,9 +3,8 @@ package app.assessment.login;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
-import org.springframework.cloud.client.loadbalancer.LoadBalanced;
-import org.springframework.context.annotation.Bean;
-import org.springframework.web.client.RestTemplate;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestMapping;
 
 @SpringBootApplication
 @EnableDiscoveryClient
@@ -15,10 +14,13 @@ public class LoginApplication {
 		SpringApplication.run(LoginApplication.class, args);
 	}
 	
-	@LoadBalanced
-	@Bean
-	RestTemplate restTemplate() {
-		return new RestTemplate();
+	@Controller
+	public class ViewController {
+
+		@RequestMapping(value = "/")
+		public String loginUser() {
+			return "login";
+		}
 	}
 
 }

@@ -27,7 +27,7 @@ public class RestAPIController {
 		return ResponseEntity.ok(findAllRegister());
 	}
 
-	@PostMapping(value = "/regOne")
+	@PostMapping(value = "/regOne",consumes = "application/json")
 	public ResponseEntity<?> regAssessment(@Valid @RequestBody RegisterBean regNewBean, Errors error) {
 
 		String stderr = "";
