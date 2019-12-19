@@ -67,7 +67,7 @@ public class RestAPIController {
 	@GetMapping(value = "/logout")
 	public String logOutUser(HttpServletRequest request) {
 		request.getSession().removeAttribute("user");
-		String url = conClient.getNextServerFromEureka("LOGIN-SERVICE", false).getHomePageUrl();
+		String url = conClient.getNextServerFromEureka("REGISTER-SERVICE", false).getHomePageUrl();
 		return "<html>" + "<head>" + "<title>Redirecting...</title>" + "</head>" + "<body>"
 				+ "You have been logged out..!! " + "<a href='"+url+"'>Click here to login again..!!</a>" + "</body>"
 				+ "</html>";
