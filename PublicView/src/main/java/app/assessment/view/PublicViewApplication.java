@@ -21,7 +21,6 @@ public class PublicViewApplication {
 
 		@RequestMapping(value = "/register")
 		public String registerPage(HttpServletRequest request) {
-			request.getSession().getAttribute("user");
 			return "Choose_Assessment";
 		}
 		
