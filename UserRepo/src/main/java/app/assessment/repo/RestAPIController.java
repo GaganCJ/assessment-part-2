@@ -1,17 +1,22 @@
 package app.assessment.repo;
 
 import org.springframework.web.bind.annotation.RestController;
-import com.netflix.discovery.DiscoveryClient;
 import java.io.IOException;
+import java.net.URI;
 import java.util.ArrayList;
+import java.util.List;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.cloud.client.ServiceInstance;
+import org.springframework.cloud.client.discovery.DiscoveryClient;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RequestBody;
 
 @RestController
 public class RestAPIController {
@@ -24,31 +29,43 @@ public class RestAPIController {
 		return users;
 	}
 	
+	@Autowired
 	private UserBean userSession;
 
+	@Autowired
 	private DiscoveryClient conClient;
 	
+	@Value("${pivotal.adminservice.name}")
+	protected String adminservice;
+	
+	@Value("${pivotal.registerservice.name}")
+	protected String registerservice;
+	
 	@PostMapping(value="/getUserValid")
-	public String loginValidation(@RequestParam int userid, @RequestParam String password, @RequestParam String level, HttpServletResponse response, HttpSession session) {
+	public String loginValidation(@RequestBody ArrayList<String> userData, HttpServletResponse response, HttpSession session) {
 		
 		ArrayList<UserBean> users = findAllUsers();
 		for (UserBean u1 : users) {
-			if (u1.getUserId() == userid) {
-				if (u1.getPassword().equals(password)) {
+			if (u1.getUserId() == Integer.parseInt(userData.get(0))) {
+				if (u1.getPassword().equals(userData.get(1))) {
 					session.setAttribute("user", u1);
-					if (u1.get_userAccess().name().equals(level)) {
+					if (u1.get_userAccess().name().equals(userData.get(2))) {
 						if (u1.get_userAccess().name() == "Admin") {
-							String url = conClient.getNextServerFromEureka("ADMIN-SERVICE", false).getHomePageUrl();
+							List<ServiceInstance> instances=conClient.getInstances(adminservice);
+							URI uri=instances.get(0).getUri();
+							String url = uri.toString()+"/admin";
 							try {
-								response.sendRedirect(url+"/admin");
+								response.sendRedirect(url);
 							} catch (IOException e) {
 								// TODO Auto-generated catch block
 								e.printStackTrace();
 							}
 						} else {
-							String url = conClient.getNextServerFromEureka("REGISTER-SERVICE", false).getHomePageUrl();
+							List<ServiceInstance> instances=conClient.getInstances(registerservice);
+							URI uri=instances.get(0).getUri();
+							String url = uri.toString()+"/register";
 							try {
-								response.sendRedirect(url+"/register");
+								response.sendRedirect(url);
 							} catch (IOException e) {
 								// TODO Auto-generated catch block
 								e.printStackTrace();
@@ -70,12 +87,17 @@ public class RestAPIController {
 	}
 	
 	@GetMapping(value = "/logout")
-	public String logOutUser(HttpServletRequest request) {
+	public void logOutUser(HttpServletRequest request, HttpServletResponse response) {
 		request.getSession().invalidate();
-		String url = conClient.getNextServerFromEureka("REGISTER-SERVICE", false).getHomePageUrl();
-		return "<html>" + "<head>" + "<title>Redirecting...</title>" + "</head>" + "<body>"
-				+ "You have been logged out..!! " + "<a href='"+url+"'>Click here to login again..!!</a>" + "</body>"
-				+ "</html>";
+		List<ServiceInstance> instances=conClient.getInstances(registerservice);
+		URI uri=instances.get(0).getUri();
+		String url = uri.toString();
+		try {
+			response.sendRedirect(url);
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 
 }

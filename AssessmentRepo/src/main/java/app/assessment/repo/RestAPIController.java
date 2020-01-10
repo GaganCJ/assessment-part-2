@@ -17,14 +17,10 @@ public class RestAPIController {
 	@Autowired
 	private AssessRepo assessRepo;
 
+	@GetMapping(value = "/findAllReg")
 	public ArrayList<RegisterBean> findAllRegister() {
 		ArrayList<RegisterBean> register = (ArrayList<RegisterBean>) assessRepo.findAll();
 		return register;
-	}
-
-	@GetMapping(value = "/findAllReg")
-	public ResponseEntity<?> getRegList() {
-		return ResponseEntity.ok(findAllRegister());
 	}
 
 	@PostMapping(value = "/regOne",consumes = "application/json")
