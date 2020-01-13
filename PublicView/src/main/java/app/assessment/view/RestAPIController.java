@@ -1,7 +1,6 @@
 package app.assessment.view;
 
 import java.net.URI;
-import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,9 +11,11 @@ import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpMethod;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.client.RestTemplate;
+
+import app.assessment.pojo.LoginObject;
 
 @RestController
 public class RestAPIController {
@@ -32,12 +33,8 @@ public class RestAPIController {
 	private RestTemplate restTemplate;
 	
 	@PostMapping(value="/putLoginData")
-	public String sendLoginData(@RequestParam int userid, @RequestParam String password, @RequestParam String level) {
-		ArrayList<String> userData = new ArrayList<>();
-		userData.add(0,Integer.toString(userid));
-		userData.add(1,password);
-		userData.add(2,level);
-		HttpEntity<?> httpData = new HttpEntity<ArrayList<String>>(userData);
+	public String sendLoginData(@RequestBody LoginObject loginObj) {
+		HttpEntity<?> httpData = new HttpEntity<LoginObject>(loginObj);
 		List<ServiceInstance> instances=conClient.getInstances(userrepo);
 		URI uri=instances.get(0).getUri();
 		String url = uri.toString()+"/getUserValid";
