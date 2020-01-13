@@ -2,8 +2,6 @@ package app.assessment.repo;
 
 import org.springframework.web.bind.annotation.RestController;
 
-import app.assessment.pojo.LoginObject;
-
 import java.io.IOException;
 import java.net.URI;
 import java.util.ArrayList;
@@ -46,15 +44,16 @@ public class RestAPIController {
 	@Value("${pivotal.registerservice.name}")
 	protected String registerservice;
 	
+	@SuppressWarnings("unlikely-arg-type")
 	@PostMapping(value="/getUserValid", consumes = "application/json")
-	public String loginValidation(@Valid @RequestBody LoginObject loginObj, HttpServletResponse response, HttpSession session, Errors error) {
+	public String loginValidation(@Valid @RequestBody UserBean loginObj, HttpServletResponse response, HttpSession session, Errors error) {
 		
 		ArrayList<UserBean> users = findAllUsers();
 		for (UserBean u1 : users) {
-			if (u1.getUserId() == loginObj.getUserid()) {
+			if (u1.getUserId() == loginObj.getUserId()) {
 				if (u1.getPassword().equals(loginObj.getPassword())) {
 					session.setAttribute("user", u1);
-					if (u1.get_userAccess().name().equals(loginObj.getLevel())) {
+					if (u1.get_userAccess().name().equals(loginObj.get_userAccess())) {
 						if (u1.get_userAccess().name() == "Admin") {
 							List<ServiceInstance> instances=conClient.getInstances(adminservice);
 							URI uri=instances.get(0).getUri();

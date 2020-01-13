@@ -10,12 +10,12 @@ import org.springframework.cloud.client.discovery.DiscoveryClient;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpMethod;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.client.RestTemplate;
-
-import app.assessment.pojo.LoginObject;
 
 @RestController
 public class RestAPIController {
@@ -33,8 +33,8 @@ public class RestAPIController {
 	private RestTemplate restTemplate;
 	
 	@PostMapping(value="/putLoginData")
-	public String sendLoginData(@RequestBody LoginObject loginObj) {
-		HttpEntity<?> httpData = new HttpEntity<LoginObject>(loginObj);
+	public String sendLoginData(@RequestBody Object loginObj) {
+		HttpEntity<?> httpData = new HttpEntity<Object>(loginObj);
 		List<ServiceInstance> instances=conClient.getInstances(userrepo);
 		URI uri=instances.get(0).getUri();
 		String url = uri.toString()+"/getUserValid";
@@ -42,4 +42,30 @@ public class RestAPIController {
 		return result.getBody().toString();
 	}
 	
+	@PostMapping(value="/postRegDetails")
+	public String sendRegDetails(@RequestBody Object regObj) {
+		HttpEntity<?> httpData = new HttpEntity<Object>(regObj);
+		List<ServiceInstance> instances=conClient.getInstances(assessmentrepo);
+		URI uri=instances.get(0).getUri();
+		String url = uri.toString()+"/regOne";
+		ResponseEntity<?> result = restTemplate.exchange(url, HttpMethod.POST, httpData, String.class);
+		return result.getBody().toString();
+	}
+	
+	@GetMapping(value="/getUserId")
+	public String getUserId() {
+		List<ServiceInstance> instances=conClient.getInstances(userrepo);
+		URI uri=instances.get(0).getUri();
+		String url = uri.toString()+"/userId";
+		ResponseEntity<?> result = restTemplate.getForEntity(url, String.class);
+		return result.getBody().toString();
+	}
+	
+	@RequestMapping(value="/getOut")
+	public void getOut() {
+		List<ServiceInstance> instances=conClient.getInstances(userrepo);
+		URI uri=instances.get(0).getUri();
+		String url = uri.toString()+"/logout";
+		restTemplate.getForEntity(url, void.class);
+	}
 }

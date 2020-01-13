@@ -1,25 +1,26 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
+
 <head>
-<meta charset="UTF-8">
-<title>Assessment Management | Choose Assessment</title>
-<script src="/webjars/jquery/3.4.1/jquery.min.js"></script>
-<script src="/webjars/popper.js/1.15.0/umd/popper.min.js"></script>
-<script src="/webjars/bootstrap/4.3.1/js/bootstrap.min.js"></script>
-<link rel="stylesheet" href="/webjars/bootstrap/4.3.1/css/bootstrap.min.css" />
-<link href="/css/custom.css" rel="stylesheet"/>
+	<meta charset="UTF-8">
+	<title>Assessment Management | Choose Assessment</title>
+	<script src="/webjars/jquery/3.4.1/jquery.min.js"></script>
+	<script src="/webjars/popper.js/1.15.0/umd/popper.min.js"></script>
+	<script src="/webjars/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+	<link rel="stylesheet" href="/webjars/bootstrap/4.3.1/css/bootstrap.min.css" />
+	<link href="/css/custom.css" rel="stylesheet" />
 </head>
+
 <body>
 	<div class="container">
-		<nav
-			class="navbar navbar-expand-lg navbar-light bg-white justify-content-end">
+		<nav class="navbar navbar-expand-lg navbar-light bg-white justify-content-end">
 			<ul class="navbar-nav">
 				<li class="row">
 					<div class="col-sm-2">
 						<span id="thid" style="display:none;" th:text="${userId}"></span>
 					</div>
 					<div class="col-sm-2">
-						<a href="/logout">Logout</a>
+						<a href="/getOut">Logout</a>
 					</div>
 				</li>
 			</ul>
@@ -30,14 +31,13 @@
 					<div class="card">
 						<div class="card-header text-center" id="headingOne">
 							<h5>
-								<a id="techA" data-toggle="collapse" href="#collapseExample1"
-									role="button" aria-expanded="false"
-									aria-controls="collapseExample1">Register for Technical
+								<a id="techA" data-toggle="collapse" href="#collapseExample1" role="button"
+									aria-expanded="false" aria-controls="collapseExample1">Register for Technical
 									Assessment</a>
 							</h5>
 						</div>
-						<div class="collapse" id="collapseExample1"
-							aria-labelledby="headingOne" data-parent="#accordion">
+						<div class="collapse" id="collapseExample1" aria-labelledby="headingOne"
+							data-parent="#accordion">
 							<div class="card-body">
 								<div class="card">
 									<div class="card-header">
@@ -46,50 +46,7 @@
 										</div>
 									</div>
 									<div class="card-body">
-										<form id="signupform" class="form-horizontal" role="form"
-											action="/register/technical" method="post">
-											<div id="signupalert" style="display: none"
-												class="alert alert-danger">
-												<p>Error:</p>
-												<span></span>
-											</div>
-											<div class="form-group">
-												<label for="usedid" class="col-md-3 control-label">User
-													ID</label>
-												<div class="col-md-9">
-													<input type="text" class="form-control userId" name="userid" disabled>
-												</div>
-											</div>
-											<div class="form-group">
-												<label for="assessment" class="col-md-3 control-label">Last
-													Name</label>
-												<div class="col-md-9">
-													<select class="form-control" name="assessment">
-														<option selected disabled>Select an assessment</option>
-														<option>Java</option>
-														<option>C++</option>
-														<option>C#</option>
-														<option>Python</option>
-														<option>Perl</option>
-														<option>PHP</option>
-													</select>
-												</div>
-											</div>
-											<div class="form-group">
-												<label for="dateof" class="col-md-3 control-label">Date</label>
-												<div class="col-md-9">
-													<input type="date" class="form-control" name="dateof"
-														placeholder="Select a Date">
-												</div>
-											</div>
-											<div class="form-group">
-												<!-- Button -->
-												<div class="col-md-offset-3 col-md-9">
-													<button id="btn-signup" type="submit" class="btn btn-info">
-														<i class="icon-hand-right"></i>Register
-													</button>
-												</div>
-											</div>
+										<form id="Tech" class="form-horizontal" role="form">
 										</form>
 									</div>
 								</div>
@@ -101,14 +58,14 @@
 					<div class="card">
 						<div class="card-header text-center" id="headingTwo">
 							<h5>
-								<a class="collapsed" id="behA" data-toggle="collapse"
-									href="#collapseExample2" role="button" aria-expanded="false"
-									aria-controls="collapseExample2">Register for Behavioral
+								<a class="collapsed" id="behA" data-toggle="collapse" href="#collapseExample2"
+									role="button" aria-expanded="false" aria-controls="collapseExample2">Register for
+									Behavioral
 									Assessment</a>
 							</h5>
 						</div>
-						<div class="collapse" id="collapseExample2"
-							aria-labelledby="headingTwo" data-parent="#accordion">
+						<div class="collapse" id="collapseExample2" aria-labelledby="headingTwo"
+							data-parent="#accordion">
 							<div class="card-body">
 								<div class="card">
 									<div class="card-header">
@@ -117,47 +74,7 @@
 										</div>
 									</div>
 									<div class="card-body">
-										<form id="signupform" class="form-horizontal" role="form"
-											action="/register/behavioral" method="post">
-											<div id="signupalert" style="display: none"
-												class="alert alert-danger">
-												<p>Error:</p>
-												<span></span>
-											</div>
-											<div class="form-group">
-												<label for="usedid" class="col-md-3 control-label">User
-													ID</label>
-												<div class="col-md-9">
-													<input type="text" class="form-control userId" name="userid" disabled>
-												</div>
-											</div>
-											<div class="form-group">
-												<label for="assessment" class="col-md-3 control-label">Last
-													Name</label>
-												<div class="col-md-9">
-													<select class="form-control" name="assessment">
-														<option selected disabled>Select an assessment</option>
-														<option>Step Plus</option>
-														<option>Email Etiquette</option>
-														<option>Learning Agility</option>
-													</select>
-												</div>
-											</div>
-											<div class="form-group">
-												<label for="dateof" class="col-md-3 control-label">Date</label>
-												<div class="col-md-9">
-													<input type="date" class="form-control" name="dateof"
-														placeholder="Select a Date">
-												</div>
-											</div>
-											<div class="form-group">
-												<!-- Button -->
-												<div class="col-md-offset-3 col-md-9">
-													<button id="btn-signup" type="submit" class="btn btn-info">
-														<i class="icon-hand-right"></i>Register
-													</button>
-												</div>
-											</div>
+										<form id="Behv" class="form-horizontal" role="form">
 										</form>
 									</div>
 								</div>
@@ -169,15 +86,6 @@
 		</div>
 	</div>
 </body>
-<script type="text/javascript">
-	$(document).ready(function() {
-		$.ajax({
-			url: "http://localhost:7070/user"
-		}).then(function(data){
-			var obj = JSON.parse(data);
-			$('.userId').val(obj.userId);
-			$('.userId').placeholder(obj.userId);
-		})
-	});
-</script>
+<script src="/js/register.js"></script>
+
 </html>
