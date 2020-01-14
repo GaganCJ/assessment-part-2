@@ -1,22 +1,23 @@
 <!DOCTYPE html>
 <html>
+
 <head>
-<meta charset="UTF-8">
-<title>Assessment Management | Assessment List</title>
-<script src="/webjars/jquery/3.4.1/jquery.min.js"></script>
-<script src="/webjars/popper.js/1.15.0/umd/popper.min.js"></script>
-<script src="/webjars/bootstrap/4.3.1/js/bootstrap.min.js"></script>
-<link rel="stylesheet" href="/webjars/bootstrap/4.3.1/css/bootstrap.min.css" />
-<link href="/custom.css" rel="stylesheet" />
+	<meta charset="UTF-8">
+	<title>Assessment Management | Assessment List</title>
+	<script src="/webjars/jquery/3.4.1/jquery.min.js"></script>
+	<script src="/webjars/popper.js/1.15.0/umd/popper.min.js"></script>
+	<script src="/webjars/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+	<link rel="stylesheet" href="/webjars/bootstrap/4.3.1/css/bootstrap.min.css" />
+	<link href="/custom.css" rel="stylesheet" />
 </head>
+
 <body>
 	<div class="container">
-		<nav
-			class="navbar navbar-expand-lg navbar-light bg-white justify-content-end">
+		<nav class="navbar navbar-expand-lg navbar-light bg-white justify-content-end">
 			<ul class="navbar-nav">
 				<li class="row">
 					<div class="col-sm-2">
-						<a href="/logout">Logout</a>
+						<a href="/getOut">Logout</a>
 					</div>
 				</li>
 			</ul>
@@ -37,23 +38,24 @@
 </body>
 <script>
 	$(document).ready(
-			function() {
-				$.ajax({
-					url : "http://localhost:7094/tableview"
-				}).then(
-						function(data) {
-							var obj = JSON.parse(data);
-							$.each(function(obj) {
-								$('#list').append(
-										"<tr><th scope='row'>" + obj.userId
-												+ "</th><td>" + obj.skillTopic
-												+ "</td><td>"
-												+ obj.scheduled_date
-												+ "</td><td>"
-												+ obj.assessment_type
-												+ "</td></tr>");
-							});
-						});
-			});
+		function () {
+			$.ajax({
+				url: "/tableview"
+			}).then(
+				function (data) {
+					var obj = JSON.parse(data);
+					$.each(function (obj) {
+						$('#list').append(
+							"<tr><th scope='row'>" + obj.userId
+							+ "</th><td>" + obj.skillTopic
+							+ "</td><td>"
+							+ obj.scheduled_date
+							+ "</td><td>"
+							+ obj.assessment_type
+							+ "</td></tr>");
+					});
+				});
+		});
 </script>
+
 </html>
