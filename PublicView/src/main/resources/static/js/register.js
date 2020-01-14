@@ -1,3 +1,4 @@
+var assess_type = [["Tech","TECH"],["Behv","BEHV"]];
 var today = new Date();
 var dd = today.getDate() + 1;
 var mm = today.getMonth() + 1;
@@ -43,11 +44,27 @@ $(document).ready(
             } else {
                 data["skillTopic"] = $(".assessment option:selected").text();
                 data["scheduled_date"] = $(".dateof").val();
-                //data["assessment_type"] 
+                var type = $(".form-group").parent().attr("id");
+                if(assess_type[0][0] == type) {
+                    data["assessment_type"] = assess_type[0][1];
+                } else if(assess_type[1][0] == type){
+                    data["assessment_type"] = assess_type[1][1];
+                }
             }
                 $.ajax({
                     type: "POST",
+                    contentType: "application/json",
                     url: "/postRegDetails",
+                    data: JSON.stringify(data),
+                    dataType: 'json',
+                    cache: false,
+                    timeout: 600000,
+                    success: function (res) {
+                        $("#myModal").modal();
+                        $("#reload").click(function (){
+                            $(location).attr('href',window.location.href);
+                        });
+                    }
                 });
         });
     }
