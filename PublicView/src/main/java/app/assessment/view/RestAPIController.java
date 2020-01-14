@@ -8,7 +8,9 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.cloud.client.ServiceInstance;
 import org.springframework.cloud.client.discovery.DiscoveryClient;
 import org.springframework.http.HttpEntity;
+import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpMethod;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -34,7 +36,9 @@ public class RestAPIController {
 	
 	@PostMapping(value="/putLoginData")
 	public String sendLoginData(@RequestBody Object loginObj) {
-		HttpEntity<?> httpData = new HttpEntity<Object>(loginObj);
+		HttpHeaders headers = new HttpHeaders();
+		headers.setContentType(MediaType.APPLICATION_JSON_UTF8);
+		HttpEntity<?> httpData = new HttpEntity<Object>(loginObj,headers);
 		List<ServiceInstance> instances=conClient.getInstances(userrepo);
 		URI uri=instances.get(0).getUri();
 		String url = uri.toString()+"/getUserValid";
@@ -44,7 +48,9 @@ public class RestAPIController {
 	
 	@PostMapping(value="/postRegDetails")
 	public String sendRegDetails(@RequestBody Object regObj) {
-		HttpEntity<?> httpData = new HttpEntity<Object>(regObj);
+		HttpHeaders headers = new HttpHeaders();
+		headers.setContentType(MediaType.APPLICATION_JSON_UTF8);
+		HttpEntity<?> httpData = new HttpEntity<Object>(regObj,headers);
 		List<ServiceInstance> instances=conClient.getInstances(assessmentrepo);
 		URI uri=instances.get(0).getUri();
 		String url = uri.toString()+"/regOne";
