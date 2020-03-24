@@ -25,7 +25,6 @@ public class UserBean {
 
 	public UserBean() {
 		super();
-		// TODO Auto-generated constructor stub
 	}
 
 	public UserBean(int userId, @NotNull String password, @NotNull userAccess _userAccess) {

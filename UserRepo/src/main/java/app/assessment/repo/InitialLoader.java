@@ -15,7 +15,6 @@ public class InitialLoader implements ApplicationListener<ContextRefreshedEvent>
 
 	@Override
 	public void onApplicationEvent(ContextRefreshedEvent event) {
-		// TODO Auto-generated method stub
 		UserBean user1 = new UserBean(1001, "user1001", userAccess.Admin);
 		userRepo.save(user1);
 

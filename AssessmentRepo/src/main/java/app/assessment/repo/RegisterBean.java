@@ -28,10 +28,10 @@ public class RegisterBean {
 	private String skillTopic;
 
 	@NotNull
-	private LocalDate scheduled_date;
+	private LocalDate scheduledDate;
 
 	@NotNull
-	private String assessment_type;
+	private String assessmentType;
 	
 	@Basic
 	@Temporal(TemporalType.TIMESTAMP)
@@ -56,19 +56,19 @@ public class RegisterBean {
 	}
 
 	public LocalDate getScheduled_date() {
-		return scheduled_date;
+		return scheduledDate;
 	}
 
 	public void setScheduled_date(LocalDate scheduled_date) {
-		this.scheduled_date = scheduled_date;
+		this.scheduledDate = scheduled_date;
 	}
 
 	public String getAssessment_type() {
-		return assessment_type;
+		return assessmentType;
 	}
 
 	public void setAssessment_type(String assessment_type) {
-		this.assessment_type = assessment_type;
+		this.assessmentType = assessment_type;
 	}
 
 	public java.util.Date getUtilTimestamp() {
@@ -84,19 +84,18 @@ public class RegisterBean {
 		super();
 		this.userId = userId;
 		this.skillTopic = skillTopic;
-		this.scheduled_date = scheduled_date;
-		this.assessment_type = assessment_type;
+		this.scheduledDate = scheduled_date;
+		this.assessmentType = assessment_type;
 		this.utilTimestamp = new Timestamp(date.getTime());
 	}
 	
 	public RegisterBean() {
 		super();
-		// TODO Auto-generated constructor stub
 	}
 
 	@Override
 	public String toString() {
 		return "RegisterBean [ID=" + ID + ", userId=" + userId + ", skillTopic=" + skillTopic + ", scheduled_date="
-				+ scheduled_date + ", assessment_type=" + assessment_type + ", utilTimestamp=" + utilTimestamp + "]";
+				+ scheduledDate + ", assessment_type=" + assessmentType + ", utilTimestamp=" + utilTimestamp + "]";
 	}
 }
