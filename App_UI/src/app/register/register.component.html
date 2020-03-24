@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>{{ title }}</title>
+</head>
+
+<body>
+    <div class="container">
+        <nav class="navbar navbar-expand-lg navbar-light bg-white justify-content-end">
+            <ul class="navbar-nav">
+                <li class="row">
+                    <div class="col-sm-2">
+                        <span id="thid" style="display:none;"></span>
+                    </div>
+                    <div class="col-sm-2">
+                        <a href="/getOut">Logout</a>
+                    </div>
+                </li>
+            </ul>
+        </nav>
+        <div id="accordion">
+            <div class="row mt-3">
+                <div class="col-6">
+                    <div class="card">
+                        <div class="card-header text-center" id="headingOne">
+                            <h5>
+                                <a id="techA" data-toggle="collapse" href="#collapseExample1" role="button"
+                                    aria-expanded="false" aria-controls="collapseExample1">Register for Technical
+                                    Assessment</a>
+                            </h5>
+                        </div>
+                        <div class="collapse" id="collapseExample1" aria-labelledby="headingOne"
+                            data-parent="#accordion">
+                            <div class="card-body">
+                                <div class="card">
+                                    <div class="card-header">
+                                        <div class="card-title">
+                                            <h5>Technical Assessment Registration</h5>
+                                        </div>
+                                    </div>
+                                    <div class="card-body">
+                                        <form id="Tech" class="form-horizontal" role="form">
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-6">
+                    <div class="card">
+                        <div class="card-header text-center" id="headingTwo">
+                            <h5>
+                                <a class="collapsed" id="behA" data-toggle="collapse" href="#collapseExample2"
+                                    role="button" aria-expanded="false" aria-controls="collapseExample2">Register for
+                                    Behavioral
+                                    Assessment</a>
+                            </h5>
+                        </div>
+                        <div class="collapse" id="collapseExample2" aria-labelledby="headingTwo"
+                            data-parent="#accordion">
+                            <div class="card-body">
+                                <div class="card">
+                                    <div class="card-header">
+                                        <div class="card-title">
+                                            <h5>Behavioral Assessment Registration</h5>
+                                        </div>
+                                    </div>
+                                    <div class="card-body">
+                                        <form id="Behv" class="form-horizontal" role="form">
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal fade" id="myModal" role="dialog">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title">Assessment Registration</h4>
+                </div>
+                <div class="modal-body">
+                    <p>Registration has been successful</p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" id="reload" class="btn btn-default" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+<script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.15.0/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+
+</html>
