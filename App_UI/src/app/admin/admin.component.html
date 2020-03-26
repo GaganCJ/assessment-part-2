@@ -25,7 +25,13 @@
                     <th scope="col">Type</th>
                 </tr>
             </thead>
-            <tbody id="list">
+            <tbody>
+                <tr *ngFor="let direct of registeredDetails">
+                    <td>{{ direct.userId }}</td>
+                    <td>{{ direct.skillTopic }}</td>
+                    <td>{{ direct.scheduledDate }}</td>
+                    <td>{{ direct.assessmentType }}</td>
+                </tr>
             </tbody>
         </table>
     </div>

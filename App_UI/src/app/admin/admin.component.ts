@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Assreg } from '../shared/assreg';
+import { RESTAPIService } from '../shared/rest-api-service.service';
 
 @Component({
   selector: 'app-admin',
@@ -8,9 +10,16 @@ import { Component, OnInit } from '@angular/core';
 export class AdminComponent implements OnInit {
 
   title = 'Assessment Management | Assessment List';
-  constructor() { }
+  constructor(
+    public restApi: RESTAPIService
+  ) { }
+
+  registeredDetails: Assreg[];
 
   ngOnInit(): void {
+    this.restApi.findRegisters().subscribe((data: Assreg[]) => {
+      this.registeredDetails = data;
+    });
   }
 
 }
