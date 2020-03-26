@@ -1,30 +1,42 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, Output, EventEmitter } from '@angular/core';
+import { Users } from '../shared/users';
+import { RESTAPIService } from '../shared/rest-api-service.service';
 
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.css']
 })
-export class LoginComponent implements OnInit {
+export class LoginComponent {
 
-  title = 'Assessment Management | Login';
-  constructor() { }
+  @Input() title = 'Assessment Management | Login';
 
-  ngOnInit(): void {
+  @Output() errAlert = new EventEmitter<any>();
+
+  userDetails: Users;
+  userid: number;
+  password: string;
+  level: string;
+   constructor(
+       public restApi: RESTAPIService
+   ) { }
+
+  userValidate(): void {
+    const errDetails = {eUserId: '', ePass: '', eLevel: ''};
+    if (this.userid == null) {
+        errDetails.eUserId = 'User ID should not be empty';
+    } else if (this.password === '') {
+        errDetails.ePass = 'Password should not be empty';
+    } else if (this.level === 'Select a Level') {
+        errDetails.eLevel = 'Select the access level';
+    }
+    this.errAlert.emit(errDetails);
+    if (errDetails.eUserId === '' && errDetails.ePass === '' && errDetails.eLevel === '') {
+        this.userDetails = {userId: this.userid, password: this.password, userAccess: this.level};
+        this.restApi.loginFunc(this.userDetails).subscribe((data: {}) => {
+            // redirect to register or admin page based on the response from server
+        });
+    }
   }
 
 }
-
-/* $("button[type='submit']")
-		.click(
-				function() {
-					if ($("input[name='userid']").val() == null) {
-						$("#alertMsg strong").text(
-								"User ID should not be empty");
-					} else if ($("input[name='password']").val() == null) {
-						$("#alertMsg strong").text(
-								"Password should not be empty");
-					} else if ($("select[name='level'] option:selected").text() == "Select a Level") {
-						$("#alertMsg strong").text("Select the access level");
-					}
-				}); */

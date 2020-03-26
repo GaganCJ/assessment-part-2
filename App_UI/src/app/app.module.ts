@@ -9,13 +9,17 @@ import { AppComponent } from './app.component';
 import { AdminComponent } from './admin/admin.component';
 import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
+import { TechassessmentComponent } from './register/techassessment/techassessment.component';
+import { BehvassessmentComponent } from './register/behvassessment/behvassessment.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     AdminComponent,
     LoginComponent,
-    RegisterComponent
+    RegisterComponent,
+    TechassessmentComponent,
+    BehvassessmentComponent
   ],
   imports: [
     BrowserModule,

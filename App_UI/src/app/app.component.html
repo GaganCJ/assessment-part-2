@@ -17,9 +17,11 @@
   <div class="main">
     <div class="col-md-6 col-sm-12">
       <div class="login-form">
-        <app-login></app-login>
-        <div class="alert mt-3" role="alert" id="alertMsg">
-          <strong></strong>
+        <app-login [title]="title" (errAlert)="setErrAlert($event)"></app-login>
+        <div class="alert mt-3" role="alert">
+          <strong>{{ errAlert.eUserId }}</strong>
+          <strong>{{ errAlert.ePass }}</strong>
+          <strong>{{ errAlert.eLevel }}</strong>
         </div>
       </div>
     </div>

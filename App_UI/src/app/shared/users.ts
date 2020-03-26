@@ -1,5 +1,5 @@
 export class Users {
     userId: number;
     password: string;
-    userAccess: boolean;
+    userAccess: string;
 }

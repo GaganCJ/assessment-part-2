@@ -7,4 +7,10 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
 
+  title: string;
+  errAlert: any;
+
+  setErrAlert(data: any) {
+    this.errAlert = data;
+  }
 }
