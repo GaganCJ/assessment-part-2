@@ -2,6 +2,7 @@ package app.assessment.repo;
 
 import org.springframework.web.bind.annotation.RestController;
 
+import java.io.IOException;
 import java.util.ArrayList;
 
 import javax.servlet.http.HttpServletRequest;
@@ -41,8 +42,20 @@ public class RestAPIController {
 					if (u1.get_userAccess().name().equals(loginObj.get_userAccess())) {
 						if (u1.get_userAccess().name() == "Admin") {
 							/* send a response to UI so that redirect to admin page works in UI */
+							try {
+								response.sendRedirect("http://localhost:4200/admin");
+							} catch (IOException e) {
+								// TODO Auto-generated catch block
+								e.printStackTrace();
+							}
 						} else {
 							/* send a response to UI so that redirect to register page works in UI */
+							try {
+								response.sendRedirect("http://localhost:4200/home/register");
+							} catch (IOException e) {
+								// TODO Auto-generated catch block
+								e.printStackTrace();
+							}
 						}
 					}
 				} else {
@@ -63,6 +76,12 @@ public class RestAPIController {
 	public void logOutUser(HttpServletRequest request, HttpServletResponse response) {
 		request.getSession().invalidate();
 		/* send a response to UI so that redirect to login page works in UI */
+		try {
+			response.sendRedirect("http://localhost:4200/home");
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 
 }
