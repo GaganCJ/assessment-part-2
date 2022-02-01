@@ -1,0 +1,38 @@
+body {
+    font-weight: 300 !important;
+}
+
+.sidenav {
+	background-color: #000;
+	color: #fff;
+	padding: 25px 35px 0px 25px;
+	height: 100%;
+}
+
+.login-form {
+	max-width: fit-content;
+}
+
+.form-horizontal {
+	padding: 5% 0px 5% 5%;
+}
+
+.sidenav h2, p {
+	font-weight: 300;
+	text-align: right;
+}
+
+.btn-black:hover {
+	background-color: #000 !important;
+	color: #fff;
+}
+
+.btn-black {
+	background-color: #fff !important;
+	color: #000;
+	border-color: black !important;
+}
+
+a {
+	text-decoration: none !important;
+}
