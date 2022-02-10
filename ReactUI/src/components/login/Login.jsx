@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import { Component } from 'react';
 import { Button, Row, Col, Form, InputGroup } from 'react-bootstrap';
 import './login.css';
 import { Formik } from 'formik';
@@ -65,7 +65,7 @@ export class Login extends Component {
                                         <option value="2">Admin</option>
                                     </Form.Select>
                                 </InputGroup>
-                                <Button type="submit" variant="dark" disabled={isSubmitting} onClick={!isSubmitting}>
+                                <Button type="submit" variant="dark" disabled={isSubmitting} onClick={() => !isSubmitting}>
                                     {isSubmitting ? 'Logging In...' : 'Login'}
                                 </Button>
                             </Form>)}
@@ -82,3 +82,15 @@ export class Login extends Component {
 }
 
 export default Login;
+
+/*constructor() {
+    super();
+    this.state = {objLogout : null}
+}
+setLogout = () => {
+    return (<Row>
+            <Nav className="col-sm-2">
+                <Nav.Link href="/getOut">Logout</Nav.Link>
+            </Nav>
+        </Row>);
+}*/

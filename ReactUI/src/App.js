@@ -1,25 +1,31 @@
 import logo from './logo.svg';
 import './App.css';
-import { Container, Navbar } from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import Login from './components/login/Login'
+import { Container, Navbar } from 'react-bootstrap';
+import Login from './components/login/Login';
 import Register from './components/register/Register';
+import { Component } from 'react';
 
-function App() {
-  return (<div>
-    <Navbar className="App-header">
-      <Container>
-        <Navbar.Brand href="https://reactjs.org">
-          <img src={logo} className="d-inline-block align-top App-logo" alt="logo" width="50" height="50" />
-        </Navbar.Brand>
+class App extends Component{
+  componentWillMount() {
+    document.title = "Assessment";
+  }
+  render() {
+    return (<div>
+      <Navbar className="App-header">
+        <Container>
+          <Navbar.Brand href="https://reactjs.org">
+            <img src={logo} className="d-inline-block align-top App-logo" alt="logo" width="50" height="50" />
+          </Navbar.Brand>
+        </Container>
+      </Navbar>
+      <Container fluid>
+        <Login />
+        <Register />
       </Container>
-    </Navbar>
-    <Container fluid>
-      <Login />
-      <Register />
-    </Container>
-  </div>
-  );
+    </div>
+    );
+  }
 }
 
 export default App;
